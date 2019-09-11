@@ -18,10 +18,6 @@ export default class TitleScene extends Scene {
                              .setFontFamily("Impact")
         titleText.displayOriginX = titleText.width / 2;
 
-        this.physics.add.existing(titleText);
-        (<Phaser.Physics.Arcade.Body>titleText.body).setCollideWorldBounds(true);
-        (<Phaser.Physics.Arcade.Body>titleText.body).setBounce(0.5, 0.5);
-
         const pushButtonText = this.add.text(400, 350, "press any button")
                                     .setFontSize(40)
                                     .setFontFamily("Impact");
