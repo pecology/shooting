@@ -12,6 +12,7 @@ export default class MainScene extends Scene {
     private enemy: Enemy;
     private cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys;
     private keyA: Phaser.Input.Keyboard.Key;
+    private bulletFiringIntervalMsec: number = 100;
     constructor() {
         super({ key: MainScene.name});
     }
@@ -32,7 +33,7 @@ export default class MainScene extends Scene {
     }
 
     update() {
-        if(this.input.keyboard.checkDown(this.keyA, 200)) {
+        if(this.input.keyboard.checkDown(this.keyA, this.bulletFiringIntervalMsec)) {
             const newBullet = new Bullet(this, this.ship.x, this.ship.y, 10, 1);
             this.bullets.push(newBullet);
         }
