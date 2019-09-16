@@ -4,6 +4,7 @@ import Ship from "./Ship";
 import Bullet from "./Bullet";
 import Bullets from "./Bullets";
 import GameOverScene from "./GameOverScene";
+import GameClearScene from "./GameClearScene";
 
 export default class MainScene extends Scene {
     private ship: Ship;
@@ -42,6 +43,10 @@ export default class MainScene extends Scene {
 
         if(this.ship.isDead) {
             this.scene.start(GameOverScene.name);
+        }
+
+        if(this.enemy.isDead) {
+            this.scene.start(GameClearScene.name);
         }
     }
 
