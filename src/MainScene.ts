@@ -3,6 +3,7 @@ import Enemy from "./Enemy";
 import Ship from "./Ship";
 import Bullet from "./Bullet";
 import Bullets from "./Bullets";
+import GameOverScene from "./GameOverScene";
 
 export default class MainScene extends Scene {
     private ship: Ship;
@@ -38,6 +39,10 @@ export default class MainScene extends Scene {
         this.moveObjects();
 
         this.executeHitProcess();
+
+        if(this.ship.isDead) {
+            this.scene.start(GameOverScene.name);
+        }
     }
 
     moveObjects() {
@@ -48,5 +53,6 @@ export default class MainScene extends Scene {
 
     executeHitProcess() {
         this.bullets.attack(this.enemy);
+        this.enemy.attack(this.ship);
     }
 }
