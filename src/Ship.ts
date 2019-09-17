@@ -1,10 +1,15 @@
 import { GameObjects, Scene } from "phaser";
+import Beam from "./Beam";
 
 export default class Ship extends GameObjects.Image {
     private _isdead: boolean;
+    private _beam: Beam;
     constructor(scene: Scene, x: number, y: number) {
         super(scene, x, y, Ship.name);
         scene.add.existing(this);
+
+        this._beam = new Beam(scene, x, y, 1);
+        this._beam.visible = false;
 
         this._isdead = false;
     }
@@ -25,6 +30,15 @@ export default class Ship extends GameObjects.Image {
         }
 
         this.setPosition(this.x + moveX, this.y + moveY);
+    }
+
+    emitBeam() {
+        this._beam.setPosition(this.x + 20, this.y);
+        this._beam.visible = true;
+    }
+
+    stopBeam() {
+        this._beam.visible = false;
     }
 
     crash() {
